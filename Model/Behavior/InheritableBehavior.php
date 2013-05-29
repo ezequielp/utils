@@ -143,6 +143,11 @@ class InheritableBehavior extends ModelBehavior {
 		} elseif ($this->settings[$Model->alias]['method'] == 'CTI') {
 			$this->_saveParentModel($Model);
 			$Model->id = $Model->parent->id;
+			if (isset($Model->data[$Model->name]['id']))
+			{
+				$Model->data[$Model->name]['id'] = $Model->id;
+				$Model->whitelist[] = 'id';
+			}
 		}
 		return true;
 	}
