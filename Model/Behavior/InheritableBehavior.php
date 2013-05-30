@@ -146,7 +146,8 @@ class InheritableBehavior extends ModelBehavior {
 			if (isset($Model->data[$Model->name]['id']))
 			{
 				$Model->data[$Model->name]['id'] = $Model->id;
-				$Model->whitelist[] = 'id';
+				if (!empty($Model->whitelist))
+					$Model->whitelist[] = 'id';
 			}
 		}
 		return true;
