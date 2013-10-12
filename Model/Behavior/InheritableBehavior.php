@@ -246,6 +246,7 @@ class InheritableBehavior extends ModelBehavior {
 		//Putting the parent association as the first one, so any dependent join on the parent model will
 		// be in the right order
 		$assoc = $Model->belongsTo[$Model->parent->alias];
+		$Model->belongsTo = array_diff($Model->belongsTo, $Model->parent->belongsTo);
 		unset($Model->belongsTo[$Model->parent->alias]);
 		$Model->belongsTo = array_merge(array($Model->parent->alias => $assoc), $Model->belongsTo);
 		return $success;
